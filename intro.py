@@ -8,4 +8,6 @@ class Prompt:
     def intro(self):
         time.sleep(0.5)
         print('-'*25)
+        print("/connect: To connect to your Spot")
+    
         
