@@ -19,4 +19,16 @@ class Client:
         fut = id_client.get_id_async()
         fut.result() 
     
+    def authentication(self, user, password):
+        user = str(user)
+        password = str(password)
+        robot.authentication(user, password)
+
+    def retrieve_robot_state(self):
+        state_client = self.robot_object(network_id).ensure_client('robot-state')
+        information = state_client.get_robot_state()
+        return information 
+
+        
+        
     
