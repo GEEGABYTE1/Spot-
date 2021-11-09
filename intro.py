@@ -7,6 +7,7 @@ class Prompt:
     e_stops = []
     e_stop_endpoints = {} 
     leases = []
+    turn_on = False
     def __init__(self):
         self.intro()
 
@@ -36,6 +37,20 @@ class Prompt:
         time.sleep(0.2)
         print('-'*25)
         print("/acquire_spot: Acquire your Spot")
+        time.sleep(0.2)
+        print('-'*25)
+        print("/stand: Commanding your Spot to Stand (Sample Function)")
+        time.sleep(0.2)
+        print('-'*25)
+        print("/rotatez: Command your Spot to rotate relative to the Z-axis (Sample Function)")
+        time.sleep(0.2)
+        print('-'*25)
+        print("/raiseup: Command you Spot to stand up (Sample Function)")
+        time.sleep(0.2)
+        print('-'*25)
+        print("/off: To turn your Spot off")
+
+
 
 
         
@@ -185,10 +200,44 @@ class Prompt:
                     status = self.robot.is_powered_on()
                     if status == True:
                         print("Your Spot is turned on")
+                        self.turn_on == True
                     else:
-                        print("Your Spot is turned off currently")                
+                        print("Your Spot is turned off currently") 
 
-                
+            elif user_prompt == '/stand':
+                if self.log_in() and self.turn_on == True:
+                    self.robot.timesync()
+                    self.robot.commanding_spot_stand() 
+                else:
+                    pass
+
+            elif user_prompt == '/rotatez':
+                if self.log_in() and self.turn_on == True:
+                    user_yaw = int(input("Please type in a yaw value for Spot: "))
+                    user_roll = int(input("Please type in a roll value for Spot: "))
+                    user_pitch = int(input("Please type in a pitch value for Spot: "))
+                    self.robot.commanding_spot_rotatez(user_yaw, user_roll, user_pitch)
+                else:
+                    pass
+            
+            elif user_prompt == '/raiseup':
+                if self.log_in() and self.turn_on == True:
+                    user_height = float(input("Please type the body height Spot should raise up in DECIMAL: "))
+                    self.robot.commanding_spot_raiseup(user_height)
+            
+            elif user_prompt == '/off':
+                if self.turn_on == True:
+                    self.robot.power_off()
+                    print("Spot has been powered off")
+            
+            else:
+                print("That command does not seem to be valid")
+
+            
+    
+
+    def timesync(self):
+        self.robot.est_timesync()    
 
     def log_in(self):
         if self.connection == True:

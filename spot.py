@@ -1,7 +1,11 @@
 import bosdyn.client 
 from bosdyn.clinet.image import ImageClient
+from bosdyn.client.robot_command import RobotCommandClient, blocking_stand
+from bosdyn.geometry import EulerZXY
+from bosdyn.client.robot_command import RobotCommandBuilder
 from PIL import Image 
 import io
+
 
 class Client:
     def __init__(self, name):
@@ -75,7 +79,27 @@ class Client:
 
     def est_timesync(self):
         self.robot.time_sync.wait_for_sync() 
-        
+
+    def commanding_spot_stand(self):
+        command_client = robot.ensure_client(RobotCommandClient.default_service_name)
+        blocking_stand(command_client, timeout_sec=10)
+
+    def commanding_spot_rotatez(self, yaw_val, roll_val, pitch_val):
+        footprint_R_body = EulerZXY(yaw=yaw_val, roll=roll_val, pitch=pitch_val)
+        cmd = RobotCommandBuilder.synchro_stand_command(footprint_R_body=footprint_R_body)
+        command_client.robot_command(cmd)
+    
+    def commanding_spot_raiseup(self, height):
+        cmd = RobotCommandBuilder.synchro_stand_command(body_height=height)
+        command_client.robot_command(cmd)
+
+    def power_off(self):
+        self.power_off(cut_immediately=False)
+    
+
+
+    
+
 
 
     
