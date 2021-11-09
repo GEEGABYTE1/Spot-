@@ -44,8 +44,8 @@ class Client:
         image = Image.opne(io.BytesIO(image_response.shot.image.data))
         image.show()
     
-    def e_stop(self, robot):
-        estop_client = robot.ensure_client('estop')
+    def e_stop(self):
+        estop_client = self.ensure_client('estop')
         status = estop_client.get_status()
         return status, estop_client
 
