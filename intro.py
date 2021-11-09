@@ -70,6 +70,8 @@ class Prompt:
 
                 if user_authentication:
                     robot_information = self.robot.retrieve_robot_state()
+                    user_robot_name = str(input("Please enter a name for your Spot: "))
+                    self.robot.name = user_robot_name
                     print("Here is {name}'s information: {}".format(robot_information, name=self.robot.name))
                     time.sleep(0.2)
                     print("Robot Id: {}".format(user_robot_id))
