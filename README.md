@@ -223,8 +223,8 @@ Read the section "Setting up Spot" for more details.
 
 # Extra Information
 
-Boston Dynamics Documentation for Spot: https://dev.bostondynamics.com/docs/python/quickstart
-Boston Dynamics Programming for Spot: https://dev.bostondynamics.com/docs/python/understanding_spot_programming
+* Boston Dynamics Documentation for Spot: https://dev.bostondynamics.com/docs/python/quickstart
+* Boston Dynamics Programming for Spot: https://dev.bostondynamics.com/docs/python/understanding_spot_programming
 
 The *RobotCommandService* is the primary interface for commanding mobility. Mobility and mobility-related commands include `stand`, `sit`, `selfright`, `safe_power_off`, `velocity`, and `trajectory`. 
 Thus, it is encouraged for users to tinker with this program and with their robot and unlock more functionality with Spot!
