@@ -43,8 +43,24 @@ class Client:
         image_response = image_client.get_image_from_sources([source])[0]
         image = Image.opne(io.BytesIO(image_response.shot.image.data))
         image.show()
+    
+    def e_stop(self, robot):
+        estop_client = robot.ensure_client('estop')
+        status = estop_client.get_status()
+        return status, estop_client
+
+    def create_e_stop(self, client, name, timeout=9.0):
+        print("Note: Adding a new endpoint will trigger an emergency stop to Spot, and therefore is recommended that Spot's motors are turned off.")
+        estop_endpoint = bosdyn.client.estop.EstopEndpoint(client=client, name=name, estop_timeout=timeout)
+        estop_endpoint.force_simple_setup()
+        return estop_endpoint
+
+    def clear_e_stop(self, endpoint):
+        estop_keep_alive = bosdyn.client.estop.EstopKeepAlive(endpoint)
+        estop_client.get_status()
 
     
+
 
         
         
