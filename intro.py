@@ -201,10 +201,10 @@ class Prompt:
                     self.robot.turn_on()
                     status = self.robot.is_powered_on()
                     if status == True:
-                        print("Your Spot is turned on")
+                        print("Your Spot is already turned on")
                         self.turn_on == True
                     else:
-                        print("Your Spot is turned off currently") 
+                        print("Your Spot is turned on") 
 
             elif user_prompt == '/stand':
                 if self.log_in() and self.turn_on == True:
