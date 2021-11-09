@@ -73,6 +73,10 @@ class Client:
     def turn_on(self):
         robot.power_on(timeout_sec=20)
 
+    def est_timesync(self):
+        self.robot.time_sync.wait_for_sync() 
+        
+
 
     
 
