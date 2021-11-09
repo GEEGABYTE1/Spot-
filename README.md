@@ -22,81 +22,6 @@ A virutal enviornment is not compulsory needed, however, it is recommended.
 When downaloding this program on your machine, there were will be some external Spot libraries also beign downloaded on the machine as well. These 
 libraries are all from Boston Dynamics to interact with Spot.
 
-If you would like to intsall these libraries exteranlly the command follows:
-
-
-# Commands 
-
-# Extra Information
-
-Boston Dynamics Documentation for Spot: https://dev.bostondynamics.com/docs/python/quickstart
-
-
-
-
-
-# Spot Programming 🐶
-
-Interact with Spot easily with simple commands and from your local host.
-This is a basic program that allows users to interact with Spot and configure basic settings with ease.
-
-
-# Requirements 
-
-This program works with all operating systems including OS, Windows, and Linux.
-
-The program was made in Python 3.9.1, but supports all versions of *python3*. 
-
-A *pip3* installation is also required to install Boston Dynamics' libraries to interact with Spot. However, all those libraries should be pre-installed when downloading this library.
-
-If you would like more information about the installation of Python and Pip3, visit their documentation, which is linked under "Extra Information".
-
-A virutal enviornment is not compulsory needed, however, it is recommended.
-
-## Package Installations
-
-When downaloding this program on your machine, there were will be some external Spot libraries also beign downloaded on the machine as well. These 
-libraries are all from Boston Dynamics to interact with Spot.
-
-If you would like to intsall these libraries exteranlly the command follows:
-
-
-# Commands 
-
-# Extra Information
-
-Boston Dynamics Documentation for Spot: https://dev.bostondynamics.com/docs/python/quickstart
-
-
-
-## Demo
-
-Insert gif or link to demo
-
-
-# Spot Programming 🐶
-
-Interact with Spot easily with simple commands and from your local host.
-This is a basic program that allows users to interact with Spot and configure basic settings with ease.
-
-
-# Requirements 
-
-This program works with all operating systems including OS, Windows, and Linux.
-
-The program was made in Python 3.9.1, but supports all versions of *python3*. 
-
-A *pip3* installation is also required to install Boston Dynamics' libraries to interact with Spot. However, all those libraries should be pre-installed when downloading this library.
-
-If you would like more information about the installation of Python and Pip3, visit their documentation, which is linked under "Extra Information".
-
-A virutal enviornment is not compulsory needed, however, it is recommended.
-
-## Package Installations
-
-When downaloding this program on your machine, there were will be some external Spot libraries also beign downloaded on the machine as well. These 
-libraries are all from Boston Dynamics to interact with Spot.
-
 If you would like to intsall these libraries exteranlly the command follows:\
 `python3 -m pip install bosdyn-client==3.0.1 bosdyn-mission==3.0.1 bosdyn-choreography-client==3.0.1` 
 
@@ -111,20 +36,20 @@ It is recommended that the user uninstalls the packages and reinstalling. The un
 In order to know that we have installed the packages correctly, we can use the command:\
 `python3 -m pip list --format=columns | grep bosdyn`
 
-A sample output may be:\
-<div align="center>
+A sample output may be:
+
     bosdyn-api                   3.0.1
     bosdyn-choreography-client    3.0.1
     bosdyn-choreography-protos    3.0.1
     bosdyn-client                 3.0.1
     bosdyn-core                   3.0.1
     bosdyn-mission                3.0.1
-</div>
 
-*Note*: If packages are not installed correctly, then a sample error message may appear:\
+
+*Note*: If packages are not installed correctly, then a sample error message may appear:
 `Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-ModuleNotFoundError: No module named 'bosdyn.client'`
+File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'bosdyn.client' `
 
 
 # Setting up Spot
