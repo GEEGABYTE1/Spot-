@@ -1,4 +1,7 @@
 import bosdyn.client 
+from bosdyn.clinet.image import ImageClient
+from PIL import Image 
+import io
 
 class Client:
     def __init__(self, name):
@@ -28,6 +31,20 @@ class Client:
         state_client = self.robot_object(network_id).ensure_client('robot-state')
         information = state_client.get_robot_state()
         return information 
+
+    def sources(self):
+        image_client = robot.ensure_client(ImageClient.default_service_name)
+        sources_combined = image_client.list_image_sources()
+        returned_list = [source.name for source in sources]
+
+        return returned_list 
+
+    def capturing_image(self, sources, source):
+        image_response = image_client.get_image_from_sources([source])[0]
+        image = Image.opne(io.BytesIO(image_response.shot.image.data))
+        image.show()
+
+    
 
         
         
