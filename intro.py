@@ -3,6 +3,7 @@ from spot import*
 
 class Prompt:
     robot = None
+    connection = None
     def __init__(self):
         self.intro()
 
@@ -11,6 +12,9 @@ class Prompt:
         time.sleep(0.2)
         print('-'*25)
         print("/connect: To connect to your Spot")
+        time.sleep(0.2)
+        print('-'*25)
+        print("/capture_image: To capture images with your Spot")
         time.sleep(0.2)
         print('-'*25)
         
@@ -36,6 +40,20 @@ class Prompt:
                     time.sleep(0.2)
                     print("More Robot Information: {}".format(user_robot_obj))
                     time.sleep(0.2)
+                    self.connection = True
+            
+            elif user_prompt == '/capture_image':
+                if self.connection == True:
+                    time.sleep(0.1)
+                    sources = self.robot.sources()
+                    print("Here are your sources listed within Spot: ")
+                    for i in sources:
+                        print(str(i) + "\n")
+                    saved_source_prompt = str(input("Which source would you like to save to capture a photo?: "))
+                    saved_source_prompt = saved_source_prompt.strip(" ")
+                    self.robot.capturing_image(sources, saved_source_prompt)
+                                        
+                    
                     
 
 
