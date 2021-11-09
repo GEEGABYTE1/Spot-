@@ -6,6 +6,7 @@ class Prompt:
     connection = None
     e_stops = []
     e_stop_endpoints = {} 
+    leases = []
     def __init__(self):
         self.intro()
 
@@ -26,6 +27,13 @@ class Prompt:
         time.sleep(0.2)
         print('-'*25)
         print("/clear_e_stop: To delete or clear an e-stop")
+        time.sleep(0.2)
+        print('-'*25)
+        print("/list_leases: List previous leases of your Spot")
+        time.sleep(0.2)
+        print('-'*25)
+        print("/acquire_spot: Acquire your Spot")
+
 
         
     
@@ -142,9 +150,33 @@ class Prompt:
                         print("\n Clear successful")
                 else:
                     print("There are no e-stops logged")
-    
-                
+            
+            elif user_prompt == '/list_leases':
+                if self.log_in():
+                    leases_list_robot = self.robot.spot_leases()[0]
+                    leases_client_robot = self.robot.spot_leases()[1]
+                    self.leases.append(leases_client_robot)
+                    print(leases_list_robot)
+            
+            elif user_prompt == '/acquire_spot':
+                if self.log_in():
+                    for client in range(len(self.leases)):
+                        print('{}: {}'.format(client, self.leases[client]))
                     
+                    while True:
+                            num = int(input("Please type in a number that corresponds to your desired lease client to be acquired: "))
+                            if num > len(list(self.e_stop_endpoints.keys())):
+                                print("That number is too large! ")
+                            else:
+                                break
+                    
+                    desired_lease = self.leases[num]
+                    updated_leases = self.become_owner(desired_lease)
+                    print("You have successfully acquired this Spot")
+                    time.sleep(0.2)
+                    print(updated_leases) 
+                
+
                 
 
     def log_in(self):
