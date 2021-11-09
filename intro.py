@@ -17,6 +17,9 @@ class Prompt:
         print("/connect: To connect to your Spot")
         time.sleep(0.2)
         print('-'*25)
+        print("/turn_on: Turn your Spot on")
+        time.sleep(0.2)
+        print('-'*25)
         print("/capture_image: To capture images with your Spot")
         time.sleep(0.2)
         print('-'*25)
@@ -175,7 +178,15 @@ class Prompt:
                     print("You have successfully acquired this Spot")
                     time.sleep(0.2)
                     print(updated_leases) 
-                
+            
+            elif user_prompt == '/turn_on':
+                if self.log_in():
+                    self.robot.turn_on()
+                    status = self.robot.is_powered_on()
+                    if status == True:
+                        print("Your Spot is turned on")
+                    else:
+                        print("Your Spot is turned off currently")                
 
                 
 

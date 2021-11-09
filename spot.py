@@ -70,7 +70,10 @@ class Client:
         leases_list_updated = client.list_leases() 
         return leases_list_updated
 
-        
+    def turn_on(self):
+        robot.power_on(timeout_sec=20)
+
+
     
 
 
