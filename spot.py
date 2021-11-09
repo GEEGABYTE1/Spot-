@@ -59,6 +59,18 @@ class Client:
         estop_keep_alive = bosdyn.client.estop.EstopKeepAlive(endpoint)
         estop_client.get_status()
 
+    def spot_leases(self):
+        lease_client = self.ensure_client('lease')
+        leases_list = lease_client.list_leases()
+        return leases_list, lease_client
+
+    def become_owner(self, client):
+        lease = client.acquire()
+        lease_keep_alive = bosdyn.client.lease.LeaseKeepAlive(client)
+        leases_list_updated = client.list_leases() 
+        return leases_list_updated
+
+        
     
 
 
